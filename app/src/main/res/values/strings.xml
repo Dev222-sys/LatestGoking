@@ -1,0 +1,123 @@
+<resources>
+    <string name="app_name">Go Kings</string>
+    <string name="join_us_global">Join us for a Global cause</string>
+    <string name="contact_hint">05XXXXXXX</string>
+    <string name="name">Enter your Full Name please</string>
+    <string name="get_started">Get started by entering your name and phone number</string>
+    <string name="terms"><u>Terms and Service</u></string>
+    <string name="i_agree">I agree with Go Kings </string>
+    <string name="and">&amp; </string>
+    <string name="privacy_policy"><u>Privacy Policy</u></string>
+    <string name="Enter">Enter OTP</string>
+    <string name="number">The OTP has been sent to your registered mobile number</string>
+    <string name="does"> Tell us about your child to help us find the right carpool for you </string>
+    <string name="vom">Any eca</string>
+    <string name="regular">Regular timing</string>
+    <string name="add_another_activity">Add another activity</string>
+    <string name="creating">Creating a Carpool</string>
+    <string name="max"> limit of children in the car</string>
+    <string name="noconnection">Kindly connect to a WIFI network or enable Mobile Data</string>
+
+    <string name="privacy_content">Go Kings Privacy &amp; Data Use Policy
+
+ THE TERMS OF THIS PRIVACY &amp; DATA USE POLICY (“POLICY”) ARE LEGALLY BINDING. IF YOU USE OUR SERVICES (AS DEFINED BELOW), YOU AGREE TO BE BOUND BY ALL OF THE TERMS AND CONDITIONS OF THIS POLICY.
+
+ DISCLAIMER GO KINGS IS A STUDENT PROJECT WITH NO COMMERCIAL APPLICATION. THE GO KINGS PROJECT WILL REMAIN IN BETA as (“Testing Version”) AND WILL BE MAINTAINED AND MANAGED BY STUDENTS TILL A FORMAL ORGANISATION STRUCTURE IS ESTABLISHED.
+
+Go kings (“Go Kings,” “we,” or “us”) respects the privacy of its users and has developed this Policy to demonstrate its commitment to protecting your privacy. This Policy is intended to transparently disclose to you how we may collect, use and share your information.
+
+ This Policy applies to you, as an individual or entity, when you use any of Go Kings’s services, our mobile applications or any other web-based or mobile service or any offering through any of our websites (collectively, our “Services”).
+
+Please read the Privacy Policy carefully to understand our practices regarding your personal data and how we will treat it.
+
+ Who we are?
+
+Go Kings  is a student project and offered as a Testing service by students. Go Kings is a Social Service for Parents offered with an intention to build a community that shares resources and offers help to others. The gold is also to ultimately control the school going traffic and reduce congestion on the roads. Also to bring children living in the same neighborhood closer and promote the idea of helping each other.
+
+ What Is Personal Data?
+
+ We collect information about you in a range of forms, including personal data. As used in this Policy, “personal data”, and includes any information which, either alone or in combination with other information we hold about you, identifies you, including, for example, your name, postal address, email address and telephone number.
+
+ Why Do We Need Your Personal Data?We need certain personal data in order to deliver the Services to you.
+
+
+
+
+Your constant
+
+By registering with Go Kings or submitting personal data through our Services, you expressly consent to the collection, use and disclosure of your personal data in accordance with this
+Policy. We will process your personal data in accordance with applicable data protection and privacy laws. When you register with us, you are required to consent to our Policy. This consent provides us with a legal basis under applicable law to process your personal data. You maintain the right to withdraw such consent at any time.
+
+Information we receive about you
+
+ In General we receive a number of different types of information from you when you use our Services, some of which is personally identifying, some of which is not. The information received through our Services may be sent to or stored on servers located in the United Arab Emirates or other countries around the world
+
+ Information you provide or a school or school district provides on your behalf
+
+ We may collect and store any personal information you provide through the Services or that is provided to us in some other manner in relation to your use of the Services. This includes identifying information, such as your and your family members’ (if applicable) full names, home address, email addresses, images, telephone numbers, EmiratesID. We also may request information about your interests and activities, your gender, your location , and other demographic or profile information.
+
+ Information from other sources
+
+ We may also periodically obtain both personal and non-personal information about you from other users (when they invite you to an event or to join a carpool through our Services), our business partners, contractors, and other third parties (including schools and school districts) and may add it to our account information or other information we have collected about you. Examples of information that we may receive include but are not limited to: name, contact information, updated pick up and drop off or address information, and additional demographic information such as grades of your children.
+
+Cookies
+
+ If you do not accept our cookies, you may experience some inconvenience in your use of our Services. For example, we may not be able to recognize your computer or mobile device and you may need to log in every time you visit our Services
+
+
+
+
+ Mobile Devices
+
+We may receive information from your mobile devices when you visit our Services, such as geographic or geolocation information. If you choose to turn off identifiers such as locational tracking on your mobile device, please note that you may not be able to use some of the interactive features offered through our Services.
+
+How we use the information we collect
+
+ We may use information that we collect about you to:
+
+ ● to facilitate the creation of your account with Go Kings
+ ● to provide you with the Services;
+ ● deliver invitations and/or reminders that you have requested;
+ ● share information you have voluntarily provided about yourself with other guests who have been invited to the same events;
+ ● manage your account and provide you with customer support;
+ ● to improve our products and Services;
+ ● communicate with you about products or services that may be of interest to you;
+ ● verify your eligibility and deliver prizes in connection with contests and sweepstakes;
+ ● enforce our Terms of Service;
+ ● manage our business; and
+ ● perform functions as otherwise described to you at the time of collection.
+
+
+ Financial Information
+
+
+ No financial information is accepted on Go Kings. It’s a non-commercial service.
+
+
+ With whom we share information
+
+
+We want you to understand when and with whom we may share personal or other information you have provided to us or that we have collected about you or your activities on our Service.
+
+We may share information with:
+
+Other Users. Users and/or guests invited to the same events as you may be able to view the personal information that you provide on your profile page and on carpool invitations. Users and/or guests invited to the same events as you or included in the same communications as you and/or guests invited to the same events as you or included in the same communications as you will also be able to see the content of any messages you post or send related to the event
+
+Authorized service providers. We may share your personal and non-personal information with our authorized service providers that perform certain services on our behalf. These services may include, but are not limited to, sending SMS or email reminders,, processing credit card payments, providing customer service and marketing assistance, performing business and sales analysis, supporting the functionality and data and technology infrastructure of our Services, and supporting contests, sweepstakes, surveys and other features offered through our Services. These service providers may have access to personal information needed to perform their functions but are not permitted to share or use such information for any other purposes.</string>
+
+    <string-array name="maptype_array">
+
+        <item>Kings School Al Barsha</item>
+        <item>Kings School Dubai</item>
+        <item>Kings School Nad Al Sheba</item>
+    </string-array>
+
+
+    <string-array name="primary">
+        <item>Primary</item>
+        <item>Secondary</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_showing_person_google">Map</string>
+
+</resources>

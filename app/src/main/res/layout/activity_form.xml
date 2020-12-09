@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10sp"
+    android:background="@color/background"
+    tools:context=".form">
+
+    <ImageView
+        android:id="@+id/imageback"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:src="@drawable/ic_back"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop='10sp'
+        android:layout_marginRight='20sp'
+        android:layout_marginBottom='10sp'
+        android:text="@string/does"
+        android:textColor="@color/black"
+        android:textSize="25dp" />
+
+   <!-- <View
+        android:layout_width="110dp"
+        android:layout_height="3dp"
+        android:layout_marginBottom='10sp'
+        android:background="@color/blue" />-->
+    <soup.neumorphism.NeumorphCardView
+
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:neumorph_shadowElevation="6dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        style="@style/Widget.Neumorph.CardView"
+        app:neumorph_shapeType="pressed">
+
+
+
+
+        <Spinner
+            android:gravity="center"
+            android:id="@+id/coloredSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/maptype_array"
+            />
+
+
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+    <soup.neumorphism.NeumorphCardView
+
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:neumorph_shadowElevation="6dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        style="@style/Widget.Neumorph.CardView"
+        app:neumorph_shapeType="pressed">
+
+
+
+
+        <Spinner
+            android:id="@+id/primary"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/primary"
+            />
+
+
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+
+
+
+
+
+
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/on"
+
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:neumorph_shadowElevation="6dp"
+  android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        style="@style/Widget.Neumorph.CardView"
+        app:neumorph_shapeType="pressed">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:background="@drawable/no_background"
+
+            android:layout_height="wrap_content"
+            android:drawablePadding="10sp"
+            android:hint="Enter your search radius in km ?"
+            android:inputType="number"
+            android:gravity="center"
+            android:backgroundTint="@color/black"
+            android:padding="14dp"
+            android:paddingEnd="10dp"
+            android:textSize="@dimen/txt16"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color"
+            android:textCursorDrawable="@drawable/curser"
+            />
+
+
+
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+
+
+
+
+
+
+<!--
+        android:drawableLeft="@drawable/ic_plus"
+        android:drawablePadding="10sp"
+        android:text="@string/add_another_activity"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="23dp" />-->
+
+
+
+    <soup.neumorphism.NeumorphButton
+        android:id="@+id/button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="continue"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/text_color"
+
+        style="@style/Widget.Neumorph.Button"/>
+
+</LinearLayout>

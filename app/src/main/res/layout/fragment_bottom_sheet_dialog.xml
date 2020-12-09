@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:background="@color/white"
+    android:paddingTop="8dp">
+
+    <!-- NOTE: This list should be displayed in a list
+    instead of nested layouts -->
+    <soup.neumorphism.NeumorphCardView
+
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:neumorph_shadowElevation="6dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        style="@style/Widget.Neumorph.CardView"
+        app:neumorph_shapeType="pressed">
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:background="@drawable/no_background"
+
+            android:layout_height="wrap_content"
+            android:drawablePadding="10sp"
+            android:hint="Mirran Rai"
+            android:inputType="number"
+            android:gravity="center"
+            android:backgroundTint="@color/black"
+            android:padding="14dp"
+            android:paddingEnd="10dp"
+            android:textSize="26dp"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color"
+            android:textCursorDrawable="@drawable/curser"
+            />
+
+
+
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+
+        <LinearLayout
+            android:id="@+id/call"
+            android:layout_margin="@dimen/space10"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <ImageView
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:background="@drawable/ic_call"
+                android:backgroundTint="@color/black"
+                android:drawablePadding="10sp"
+
+                android:layout_marginTop="@dimen/space10"
+                android:hint="Mirran Rai"
+                android:inputType="number"
+
+                android:padding="14dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_color"
+                android:textCursorDrawable="@drawable/curser"
+                android:textSize="@dimen/txt16" />
+
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="wrap_content"
+                android:background="@drawable/no_background"
+
+                android:layout_height="wrap_content"
+                android:drawablePadding="10sp"
+                android:hint="Mirran Rai"
+                android:inputType="number"
+                android:gravity="center"
+                android:backgroundTint="@color/black"
+                android:padding="14dp"
+                android:paddingEnd="10dp"
+                android:textSize="24dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_color"
+                android:textCursorDrawable="@drawable/curser"
+                />
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
