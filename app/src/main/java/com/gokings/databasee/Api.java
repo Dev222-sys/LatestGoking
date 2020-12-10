@@ -25,10 +25,12 @@ public interface Api {
 
 
     @FormUrlEncoded
-    @POST("latlong.php/")
+    @POST("address_reg.php/")
     Call<ResponseBody>SendLatlong(
-            @Field("latitude") String lat,
-            @Field("longitude") String lng);
+
+            @Field("id") String id,
+            @Field("lat") String lat,
+            @Field("long") String longt);
 
 }
 

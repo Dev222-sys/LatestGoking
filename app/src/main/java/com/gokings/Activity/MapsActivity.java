@@ -6,32 +6,25 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.gokings.ContactNumberActivity;
-import com.gokings.OTPScreen;
 import com.gokings.R;
 import com.gokings.databasee.RetrofitClient;
 import com.gokings.form;
+import com.gokings.storage.SharedPrefManager;
 import com.gokings.util;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.internal.ConnectionCallbacks;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -40,15 +33,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -81,6 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String msg;
     String lat,lon;
 
+    KProgressHUD pDialog;
 
 
     @Override
@@ -94,12 +86,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
 
+
                // Toast.makeText(MapsActivity.this, msg + "", Toast.LENGTH_SHORT).show();
                /* Toast.makeText(MapsActivity.this, lat +lon+ "", Toast.LENGTH_SHORT).show();*/
                 sendlatlong();
-                Intent intent = new Intent(MapsActivity.this, form.class);
-                startActivity(intent);
 
+
+/*
+
+                String name =SharedPrefManager.getInstans(getApplicationContext()).getUsername();
+
+                String phone =SharedPrefManager.getInstans(getApplicationContext()).getmobile();
+
+                Toast.makeText(MapsActivity.this, id+name+phone+"", Toast.LENGTH_SHORT).show();
+*/
             }
         });
 
@@ -344,26 +344,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public  void sendlatlong()
     {
+        loginByServer();
+        showpDialog();
+
         Toast.makeText(MapsActivity.this, lat +lon+ "", Toast.LENGTH_SHORT).show();
+
+        String id =SharedPrefManager.getInstans(getApplicationContext()).getUserId();
 
         Call<ResponseBody> call= RetrofitClient
                 .getInstance()
-                .getApi().SendLatlong(lat,lon);
+                .getApi().SendLatlong(id,lat,lon);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 String s=null;
 
                 if (response.code()==200) {
+                    try {
+                        s=response.body().string();
+                        Toast.makeText(MapsActivity.this, s+"", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MapsActivity.this, form.class);
+                        startActivity(intent);
+                        hidepDialog();
 
-
-
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+                hidepDialog();
+
 
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                hidepDialog();
 
 
 
@@ -371,5 +386,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
     }
+    private void loginByServer() {
+        pDialog = KProgressHUD.create(this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Please wait.....")
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+    }
+    private void showpDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
 
 }

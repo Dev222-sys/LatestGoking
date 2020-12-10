@@ -15,13 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gokings.Activity.MapsActivity;
 import com.gokings.databasee.RetrofitClient;
-import com.gokings.model.User_login;
 import com.gokings.storage.SharedPrefManager;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -200,43 +198,35 @@ public class OTPScreen extends AppCompatActivity {
                 mobile_no = bundle.getString("mobile_no");
                 name = bundle.getString("name1");
                 if (ed_otp.equals(otp)) {
-                    Toast.makeText(this, otp + name + mobile_no + "", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, otp + name + mobile_no + "", Toast.LENGTH_SHORT).show();
                     Toast.makeText(this, "verified", Toast.LENGTH_SHORT).show();
                     Call<ResponseBody> call = RetrofitClient
                             .getInstance()
-
                             .getApi().register(name, mobile_no);
                     call.enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                            Toast.makeText(OTPScreen.this, response.toString() + "", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(OTPScreen.this, response.toString() + "", Toast.LENGTH_SHORT).show();
                             String s = null;
 
                             if (response.code() == 200) {
-
                                 try {
-
                                     s = response.body().string();
                                     JSONObject jsonObject = new JSONObject(s);
-                                    String status = jsonObject.getString("status");
-                                    String usertype = jsonObject.getString("usertype");
-                                    int status_code = jsonObject.getInt("status_code");
-
-                                    //                   Toast.makeText(OTPScreen.this, status+usertype+"", Toast.LENGTH_SHORT).show();
-                                    User_login user_login = new User_login(1, usertype);
-                                    SharedPrefManager.getInstance(OTPScreen.this)
-                                            .saveuser(user_login);
-
+                                    String id = jsonObject.getString("id");
+                                    String phone=jsonObject.getString("phone");
+                                    String name=jsonObject.getString("name");
+                                    SharedPrefManager.getInstans(getApplicationContext()).userLogin(id,name,phone);
                                     Intent intent = new Intent(OTPScreen.this, MapsActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     hidepDialog();
-                                    //    Toast.makeText(ContactNumberActivity.this, otp+"", Toast.LENGTH_SHORT).show();
                                 } catch (IOException | JSONException e) {
                                     e.printStackTrace();
                                 }
                             } else {
+
                             }
                         }
 

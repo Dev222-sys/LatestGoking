@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,14 +15,13 @@ import android.widget.Toast;
 import com.gokings.Activity.MapsActivity;
 import com.gokings.Activity.Terms_Service;
 import com.gokings.databasee.RetrofitClient;
+import com.gokings.storage.SharedPrefManager;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -53,7 +51,7 @@ TextView terms;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               openActivity_o_t_p_screen();
+                number_validation();
 
             }
         });
@@ -81,13 +79,7 @@ TextView terms;
 
 
     }
-    public void openActivity_o_t_p_screen() {
-       // Toast.makeText(this, "hey", Toast.LENGTH_SHORT).show();
-       // util.showtoast(ContactNumberActivity.this,"please check Number");
-        number_validation();
 
-
-    }
 
     public void privacyPolicyClick(View view) {
         loginByServer();
@@ -135,26 +127,6 @@ TextView terms;
         }
 
         else {
-/*
-            Bundle bundle = new Bundle();
-            bundle.putString("otp","1234");
-            bundle.putString("mobile_no",mobile);
-            bundle.putString("name1",name1);
-
-
-            Intent intent = new Intent(ContactNumberActivity.this,OTPScreen.class);
-            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-            intent.putExtras(bundle);
-            startActivity(intent);
-            hidepDialog();
-
-*/
-
-           /* Intent intent = new Intent(ContactNumberActivity.this, OTPScreen.class);
-            startActivity(intent);
-            hidepDialog();*/
-
 
             Call<ResponseBody> call= RetrofitClient
                     .getInstance()
@@ -175,11 +147,17 @@ TextView terms;
                                 if (status_code.equals("0"))
                                 {
 
-                                    String status=jsonObject.getString("usertype");
+                                    String id=jsonObject.getString("id");
                                     String name=jsonObject.getString("user_name");
+                                    String phone=jsonObject.getString("phone");
+
+                                    SharedPrefManager.getInstans(getApplicationContext()).userLogin(id,name,phone);
 
 
-                                    Toast.makeText(ContactNumberActivity.this, status+name+"", Toast.LENGTH_SHORT).show();
+
+
+
+                                    //Toast.makeText(ContactNumberActivity.this, id+name+"", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(ContactNumberActivity.this, MapsActivity.class);
                                     startActivity(intent);
                                     hidepDialog();
