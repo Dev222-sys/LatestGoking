@@ -19,7 +19,7 @@ public class create extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form);
+        setContentView(R.layout.activity_create);
 
         time = findViewById(R.id.time);
         on = findViewById(R.id.on);

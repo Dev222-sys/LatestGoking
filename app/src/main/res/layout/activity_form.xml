@@ -103,6 +103,7 @@
 
 
         <EditText
+            android:id="@+id/radius"
             android:layout_width="match_parent"
             android:background="@drawable/no_background"
 

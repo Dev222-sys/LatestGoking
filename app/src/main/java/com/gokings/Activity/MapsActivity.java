@@ -347,7 +347,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         loginByServer();
         showpDialog();
 
-        Toast.makeText(MapsActivity.this, lat +lon+ "", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(MapsActivity.this, lat +lon+ "", Toast.LENGTH_SHORT).show();
 
         String id =SharedPrefManager.getInstans(getApplicationContext()).getUserId();
 
@@ -362,7 +362,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (response.code()==200) {
                     try {
                         s=response.body().string();
-                        Toast.makeText(MapsActivity.this, s+"", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(MapsActivity.this, s+"", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MapsActivity.this, form.class);
                         startActivity(intent);
                         hidepDialog();

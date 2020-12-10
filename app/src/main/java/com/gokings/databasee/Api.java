@@ -32,6 +32,15 @@ public interface Api {
             @Field("lat") String lat,
             @Field("long") String longt);
 
+
+    @FormUrlEncoded
+    @POST("radius.php/")
+    Call<ResponseBody>sendradius(
+
+            @Field("id") String id,
+            @Field("radius") String radius);
+
+
 }
 
 
