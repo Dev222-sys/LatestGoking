@@ -136,7 +136,7 @@ public class form extends AppCompatActivity implements AdapterView.OnItemSelecte
 
             Call<ResponseBody> call= RetrofitClient
                     .getInstance()
-                    .getApi().sendradius(id,radiuss);
+                    .getApi().sendradius(id,radiuss,School,School_type);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

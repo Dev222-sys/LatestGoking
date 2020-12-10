@@ -38,7 +38,10 @@ public interface Api {
     Call<ResponseBody>sendradius(
 
             @Field("id") String id,
-            @Field("radius") String radius);
+            @Field("radius") String radius,
+            @Field("school name") String school_name,
+            @Field("school categories") String school_categories
+            );
 
 
 }
