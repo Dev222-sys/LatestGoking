@@ -18,7 +18,9 @@
     <color name="background">#EFEEEE</color>
 
     <color name="light_blue">#56A5EC</color>
-    #56A5EC
+
+    <color name="red">#F04747</color>
+
 
 
 </resources>

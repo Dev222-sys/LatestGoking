@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,7 +89,7 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
             for (int j = 0; j < title.size(); j++) {
                 for (int k = 0; k < Name.size(); k++) {
 
-                    drawMarkerWithCircle(arrayList.get(i));
+
                     //drawMarkerWithCircle(arrayList.get(i));
                     mMap.addMarker(new MarkerOptions()
                                     .position(arrayList.get(i))
@@ -117,7 +118,7 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
                 View view1 = getLayoutInflater().inflate(R.layout.fragment_bottom_sheet_dialog, null);
                 TextView name = view1.findViewById(R.id.name);
                 TextView number = view1.findViewById(R.id.number);
-                LinearLayout call = view1.findViewById(R.id.call);
+                RelativeLayout call = view1.findViewById(R.id.call);
                 number.setText(marker.getSnippet());
                 name.setText(PhoneNum);
                 call.setOnClickListener(new View.OnClickListener() {
