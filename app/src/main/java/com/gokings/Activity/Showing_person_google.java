@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.gokings.MainActivity;
 import com.gokings.R;
+import com.gokings.databasee.RetrofitClient;
+import com.gokings.form;
+import com.gokings.storage.SharedPrefManager;
 import com.gokings.util;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,13 +29,30 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Showing_person_google extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     ArrayList<LatLng> arrayList = new ArrayList<>();
+
+    ArrayList namelist = new ArrayList();
+
+
+    KProgressHUD pDialog;
+    String name,phone,lat,longt;
 
     LatLng l1 = new LatLng(28.54949553440099, 77.20359201437427);
     LatLng l2 = new LatLng(28.5497706125795, 77.20353011890617);
@@ -49,6 +69,12 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+        getOnline();
+        getname();
+
+
         title = new ArrayList<>();
         Name = new ArrayList<>();
 
@@ -67,6 +93,7 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
         Name.add("Mirran");
         Name.add("Rahul");
         Name.add("Rohit");
+
 
 
     }
@@ -161,4 +188,97 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
         mMarker = mMap.addMarker(markerOptions);*/
     }
 
+    private void loginByServer() {
+        pDialog = KProgressHUD.create(this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Please wait.....")
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+    }
+
+    private void showpDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+    private void getOnline()
+    {
+        loginByServer();
+        showpDialog();
+
+        String id = SharedPrefManager.getInstans(getApplicationContext()).getUserId();
+
+
+        Call<ResponseBody> call= RetrofitClient
+                .getInstance()
+                .getApi().online_person(id);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String s=null;
+
+                if (response.code()==200) {
+
+                    try {
+
+                        s=response.body().string();
+                        JSONObject jsonObject=new JSONObject(s);
+                        JSONArray jsonArray=jsonObject.getJSONArray("records");
+                        for (int i=0;i<jsonArray.length();i++)
+                        {
+
+                            JSONObject jsonObject1=jsonArray.getJSONObject(i);
+
+                            name=jsonObject1.getString("uname");
+                            phone=jsonObject1.getString("phone");
+                            lat=jsonObject1.getString("latitude");
+                            longt=jsonObject1.getString("longitude");
+                            namelist.add(name);
+                           // Toast.makeText(Showing_person_google.this, phone+name+lat+"   "+longt+"", Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+
+                        // Toast.makeText(Showing_person_google.this, s+"", Toast.LENGTH_SHORT).show();
+                        hidepDialog();
+
+
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+
+                }
+
+                hidepDialog();
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                hidepDialog();
+                Toast.makeText(Showing_person_google.this, call.toString()+"", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+
+    private void  getname()
+    {
+        for(int i = 0; i < namelist.size(); i++) {
+            Toast.makeText(this, "ada", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
+
+

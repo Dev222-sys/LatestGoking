@@ -35,10 +35,10 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Activity.MapsActivity"
+             android:name=".Activity.MapsActivity"
             android:label="@string/title_activity_showing_person_google"></activity>
         <activity
-            android:name=".Activity.Showing_person_google"
+            android:name=".MainActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".Activity.Terms_Service" />
         <activity android:name=".create" />
@@ -48,7 +48,9 @@
             android:name=".OTPScreen"
             android:parentActivityName=".ContactNumberActivity" />
         <activity android:name=".ContactNumberActivity" />
-        <activity android:name=".MainActivity">
+
+        <activity
+            android:name=".Activity.Showing_person_google">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

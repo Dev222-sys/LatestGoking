@@ -43,6 +43,11 @@ public interface Api {
             @Field("school categories") String school_categories
             );
 
+    @FormUrlEncoded
+    @POST("online_person.php/")
+    Call<ResponseBody>online_person(
+            @Field("id") String id
+          );
 
 }
 

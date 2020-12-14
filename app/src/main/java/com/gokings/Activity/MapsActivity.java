@@ -85,21 +85,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-               // Toast.makeText(MapsActivity.this, msg + "", Toast.LENGTH_SHORT).show();
-               /* Toast.makeText(MapsActivity.this, lat +lon+ "", Toast.LENGTH_SHORT).show();*/
                 sendlatlong();
 
-
-/*
-
-                String name =SharedPrefManager.getInstans(getApplicationContext()).getUsername();
-
-                String phone =SharedPrefManager.getInstans(getApplicationContext()).getmobile();
-
-                Toast.makeText(MapsActivity.this, id+name+phone+"", Toast.LENGTH_SHORT).show();
-*/
             }
         });
 
@@ -109,39 +96,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
-            //spinner = findViewById(R.id.spinner);
-           /* spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    switch (position) {
-                        case 0:
-                            mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                            break;
 
-                        case 1:
-                            mMap.setMapType(GoogleMap.MAP_TYPE_NONE);
-                            break;
-                        case 2:
-                            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                            break;
-                        case 3:
-                            mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                            break;
-
-                        case 4:
-                            mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-                            break;
-                        default:
-                            mMap.setMapType(GoogleMap.MAP_TYPE_NONE);
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-*/
 
         }
 
