@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Go Kings</string>
+
     <string name="join_us_global">Join us for a Global cause</string>
+
+    <string name="update_pro">Update my profile information</string>
+    <string name="update">Get Updated by entering your name,school name and education stage</string>
+
     <string name="contact_hint">05XXXXXXX</string>
     <string name="name">Enter your Full Name please</string>
     <string name="get_started">Get started by entering your name and phone number</string>
@@ -11,6 +16,10 @@
     <string name="Enter">Enter OTP</string>
     <string name="number">The OTP has been sent to your registered mobile number</string>
     <string name="does"> Tell us about your child to help us find the right carpool for you </string>
+
+    <string name="School_Name"> Please select your School name </string>
+
+    <string name="School_type">Please select your Educational stage</string>
     <string name="vom">Any eca</string>
     <string name="regular">Regular timing</string>
     <string name="add_another_activity">Add another activity</string>

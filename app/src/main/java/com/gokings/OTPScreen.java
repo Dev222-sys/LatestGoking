@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gokings.Activity.MapsActivity;
+import com.gokings.Activity.School_Deatils;
 import com.gokings.databasee.RetrofitClient;
 import com.gokings.storage.SharedPrefManager;
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -218,7 +219,7 @@ public class OTPScreen extends AppCompatActivity {
                                     String phone=jsonObject.getString("phone");
                                     String name=jsonObject.getString("name");
                                     SharedPrefManager.getInstans(getApplicationContext()).userLogin(id,name,phone);
-                                    Intent intent = new Intent(OTPScreen.this, MapsActivity.class);
+                                    Intent intent = new Intent(OTPScreen.this, School_Deatils.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     hidepDialog();

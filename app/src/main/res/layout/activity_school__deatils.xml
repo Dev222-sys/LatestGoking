@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="10sp"
+    android:background="@color/background"
+    tools:context=".Activity.School_Deatils">
+<!--
+    <ImageView
+        android:id="@+id/imageback_s_details"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:src="@drawable/ic_back"
+        />-->
+    <ImageView
+        android:src="@drawable/logo"
+        android:layout_width="200dp"
+        android:layout_height="200dp">
+
+    </ImageView>
+
+    <TextView
+        android:layout_marginTop="@dimen/space20"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:text="@string/School_Name"
+        android:textColor="@color/cream"
+        android:textSize="18dp" />
+
+    <!-- <View
+         android:layout_width="110dp"
+         android:layout_height="3dp"
+         android:layout_marginBottom='10sp'
+         android:background="@color/blue" />-->
+    <soup.neumorphism.NeumorphCardView
+
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:neumorph_shadowElevation="6dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        style="@style/Widget.Neumorph.CardView"
+        app:neumorph_shapeType="pressed">
+
+
+
+
+        <Spinner
+            android:gravity="center"
+            android:id="@+id/school_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/maptype_array"
+            />
+
+
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+    <TextView
+            android:layout_marginTop="@dimen/space10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/School_type"
+        android:textColor="@color/cream"
+        android:textSize="18dp" />
+
+    <soup.neumorphism.NeumorphCardView
+
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:neumorph_shadowElevation="6dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        style="@style/Widget.Neumorph.CardView"
+        app:neumorph_shapeType="pressed">
+
+
+
+
+        <Spinner
+            android:id="@+id/Education_stage"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/primary"
+            />
+
+
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--
+            android:drawableLeft="@drawable/ic_plus"
+            android:drawablePadding="10sp"
+            android:text="@string/add_another_activity"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="23dp" />-->
+
+
+
+    <soup.neumorphism.NeumorphButton
+        android:id="@+id/Submit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Submit"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/text_color"
+
+        style="@style/Widget.Neumorph.Button"/>
+
+</LinearLayout>

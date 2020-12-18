@@ -5,16 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10sp"
     android:background="@color/background"
     tools:context=".form">
+   <!-- <include
+        layout="@layout/inculde_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#B3B6B7"
+        android:elevation="4dp"
+        app:menu="@menu/options_menu"
+        android:outlineSpotShadowColor="@color/cream"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageback"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
-        android:src="@drawable/ic_back"
-        />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imageback"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="Prabhat Trading Service"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:src="@drawable/ic_back" />
+
+
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:padding="10sp"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+
 
     <TextView
         android:layout_width="match_parent"
@@ -24,7 +60,7 @@
         android:layout_marginBottom='10sp'
         android:text="@string/does"
         android:textColor="@color/black"
-        android:textSize="25dp" />
+        android:textSize="23dp" />
 
    <!-- <View
         android:layout_width="110dp"
@@ -155,5 +191,6 @@
         android:textColor="@color/text_color"
 
         style="@style/Widget.Neumorph.Button"/>
+    </LinearLayout>
 
 </LinearLayout>

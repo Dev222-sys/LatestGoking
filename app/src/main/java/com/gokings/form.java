@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,17 +19,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import com.gokings.Activity.Edit_Profile;
 import com.gokings.Activity.MapsActivity;
 import com.gokings.Activity.Showing_person_google;
 import com.gokings.databasee.RetrofitClient;
+import com.gokings.model.Online_person;
 import com.gokings.storage.SharedPrefManager;
+import com.google.android.gms.maps.model.LatLng;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -43,12 +52,24 @@ public class form extends AppCompatActivity implements AdapterView.OnItemSelecte
     EditText radius;
     String School,School_type;
 
+    LatLng latLng;
+    String name,phone,lat,longt;
+    ArrayList namelist = new ArrayList();
+    ArrayList<Online_person> online_person = new ArrayList();
 
-  @Override
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
         util.blackiteamstatusbar(form.this,R.color.light_background);
+
+      Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+      //setting the title
+      toolbar.setTitle(" ");
+      //placing toolbar in place of actionbar
+      setSupportActionBar(toolbar);
+
       imageback=findViewById(R.id.imageback);
       radius=findViewById(R.id.radius);
 
@@ -92,9 +113,8 @@ public class form extends AppCompatActivity implements AdapterView.OnItemSelecte
             @Override
             public void onClick(View view) {
 
-               // Toast.makeText(form.this, School+School_type+"", Toast.LENGTH_SHORT).show();
+              number_validation();
 
-               number_validation();
 
             }
         });
@@ -134,44 +154,17 @@ public class form extends AppCompatActivity implements AdapterView.OnItemSelecte
             hidepDialog();
         } else {
 
-            Call<ResponseBody> call= RetrofitClient
-                    .getInstance()
-                    .getApi().sendradius(id,radiuss,School,School_type);
-            call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    String s=null;
-
-                    if (response.code()==200) {
-
-                        try {
-
-                            s=response.body().string();
-
-                           // Toast.makeText(form.this, s+"", Toast.LENGTH_SHORT).show();
-                            Intent in=new Intent(form.this, Showing_person_google.class);
-                            startActivity(in);
-
-                            hidepDialog();
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+            Bundle basket = new Bundle();
+            basket.putString("radiuss", radiuss);
+            basket.putString("School", School);
+            basket.putString("School_type", School_type);
+            Intent intent = new Intent(form.this, Showing_person_google.class);
+            intent.putExtras(basket);
+            startActivity(intent);
 
 
-
-                    }
-
-                    hidepDialog();
-
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    hidepDialog();
-                    Toast.makeText(form.this, call.toString()+"", Toast.LENGTH_SHORT).show();
-                }
-            });
+            //Toast.makeText(form.this, radiuss+School+School_type+"", Toast.LENGTH_SHORT).show();
+            hidepDialog();
 
         }
 
@@ -251,7 +244,25 @@ public void onItemSelected(AdapterView<?> parent, View v, int position,
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
 
+        int id = item.getItemId();
+        if (id == R.id.edit_profile) {
+
+            Intent intent = new Intent(form.this, Edit_Profile.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }

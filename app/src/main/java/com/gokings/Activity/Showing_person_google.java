@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -16,6 +17,7 @@ import com.gokings.MainActivity;
 import com.gokings.R;
 import com.gokings.databasee.RetrofitClient;
 import com.gokings.form;
+import com.gokings.model.Online_person;
 import com.gokings.storage.SharedPrefManager;
 import com.gokings.util;
 import com.google.android.gms.maps.CameraUpdate;
@@ -49,10 +51,12 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
     ArrayList<LatLng> arrayList = new ArrayList<>();
 
     ArrayList namelist = new ArrayList();
+    ArrayList<Online_person> online_person = new ArrayList();
 
-
+    Online_person online_persons;
     KProgressHUD pDialog;
-    String name,phone,lat,longt;
+    LatLng latLng;
+    String name, phone, lat, longt;
 
     LatLng l1 = new LatLng(28.54949553440099, 77.20359201437427);
     LatLng l2 = new LatLng(28.5497706125795, 77.20353011890617);
@@ -60,6 +64,7 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
     LatLng l4 = new LatLng(28.55988210142341, 77.20577847637541);
     ArrayList<String> title;
     ArrayList<String> Name;
+ArrayList<Online_person>arrayListt=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +76,7 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
         mapFragment.getMapAsync(this);
 
 
-        getOnline();
-        getname();
+        //  getname();
 
 
         title = new ArrayList<>();
@@ -95,48 +99,117 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
         Name.add("Rohit");
 
 
-
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
+      //  number_validation();
+
+
         mMap = googleMap;
 
+        loginByServer();
+        showpDialog();
+        String id = SharedPrefManager.getInstans(getApplicationContext()).getUserId();
 
-        for (int i = 0; i < arrayList.size(); i++) {
-            for (int j = 0; j < title.size(); j++) {
-                for (int k = 0; k < Name.size(); k++) {
+        String radiuss = null, School = null, School_type = null;
+
+        Bundle bundle = this.getIntent().getExtras();
+
+        if (bundle != null) {
+
+            //ObtainBundleData in the object
+            radiuss = bundle.getString("radiuss");
+
+            School = bundle.getString("School");
+            School_type = bundle.getString("School_type");
+            //  Toast.makeText(this, radiuss + School + School_type + "", Toast.LENGTH_SHORT).show();
+            //Do something here if data  received
+        } else {
+            //Do something here if data not received
+        }
 
 
-                    //drawMarkerWithCircle(arrayList.get(i));
-                    mMap.addMarker(new MarkerOptions()
-                                    .position(arrayList.get(i))
-                                    .title(String.valueOf(Name.get(i)))
-                                    .snippet(title.get(i))
-                                    .anchor(0.5f, 0.5f)
+        Call<ResponseBody> call = RetrofitClient
+                .getInstance()
+                .getApi().sendradius(id, radiuss, School, School_type);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String s = null;
+                //              Toast.makeText(Showing_person_google.this, response.code() + "", Toast.LENGTH_SHORT).show();
+
+                if (response.code() == 200) {
+
+//                    Toast.makeText(Showing_person_google.this, response.body().toString() + "", Toast.LENGTH_SHORT).show();
+                    try {
+
+                        s = response.body().string();
+                        JSONObject jsonObject = new JSONObject(s);
+                        JSONArray jsonArray = jsonObject.getJSONArray("records");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                            online_persons=new Online_person();
+                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+
+                            name = jsonObject1.getString("uname");
+                            phone = jsonObject1.getString("phone");
+                            lat = jsonObject1.getString("latitude");
+                            longt = jsonObject1.getString("longitude");
+
+                            latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(longt));
+
+                            mMap.addMarker(new MarkerOptions()
+                                            .position(latLng)
+                                            .title(name)
+                                            .snippet(phone)
+                                            .anchor(0.5f, 0.5f)
+                            );
 
 
-                            //.icon(BitmapDescriptorFactory.fromResource(R.drawable.logo2)));
+                            namelist.add(name);
+                            Toast.makeText(Showing_person_google.this, phone + name + lat + "   " + longt + "", Toast.LENGTH_SHORT).show();
+                            float zoomLevel = 11.0f; //This goes up to 21
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+                        }
 
 
-                    );
+
+
+                        // Toast.makeText(Showing_person_google.this, s+"", Toast.LENGTH_SHORT).show();
+                        hidepDialog();
+
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                } else if (response.code() == 404) {
+                    Toast.makeText(Showing_person_google.this, "Users Not Found Try Another Filter !!!!", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Showing_person_google.this, form.class);
+                    startActivity(intent);
 
                 }
+                hidepDialog();
 
             }
-            float zoomLevel = 17.0f; //This goes up to 21
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(arrayList.get(i), zoomLevel));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(arrayList.get(i)));
-        }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                hidepDialog();
+                Toast.makeText(Showing_person_google.this, call.toString() + "", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
+
+
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(final Marker marker) {
@@ -207,77 +280,11 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
-    private void getOnline()
-    {
-        loginByServer();
-        showpDialog();
-
-        String id = SharedPrefManager.getInstans(getApplicationContext()).getUserId();
-
-
-        Call<ResponseBody> call= RetrofitClient
-                .getInstance()
-                .getApi().online_person(id);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                String s=null;
-
-                if (response.code()==200) {
-
-                    try {
-
-                        s=response.body().string();
-                        JSONObject jsonObject=new JSONObject(s);
-                        JSONArray jsonArray=jsonObject.getJSONArray("records");
-                        for (int i=0;i<jsonArray.length();i++)
-                        {
-
-                            JSONObject jsonObject1=jsonArray.getJSONObject(i);
-
-                            name=jsonObject1.getString("uname");
-                            phone=jsonObject1.getString("phone");
-                            lat=jsonObject1.getString("latitude");
-                            longt=jsonObject1.getString("longitude");
-                            namelist.add(name);
-                           // Toast.makeText(Showing_person_google.this, phone+name+lat+"   "+longt+"", Toast.LENGTH_SHORT).show();
-                        }
 
 
 
 
-                        // Toast.makeText(Showing_person_google.this, s+"", Toast.LENGTH_SHORT).show();
-                        hidepDialog();
 
-
-                    } catch (IOException | JSONException e) {
-                        e.printStackTrace();
-                    }
-
-
-
-                }
-
-                hidepDialog();
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                hidepDialog();
-                Toast.makeText(Showing_person_google.this, call.toString()+"", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-
-
-    private void  getname()
-    {
-        for(int i = 0; i < namelist.size(); i++) {
-            Toast.makeText(this, "ada", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 }
 
