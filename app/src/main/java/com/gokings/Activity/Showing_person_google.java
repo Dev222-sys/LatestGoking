@@ -58,13 +58,7 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
     LatLng latLng;
     String name, phone, lat, longt;
 
-    LatLng l1 = new LatLng(28.54949553440099, 77.20359201437427);
-    LatLng l2 = new LatLng(28.5497706125795, 77.20353011890617);
-    LatLng l3 = new LatLng(28.552288405715974, 77.20270345431017);
-    LatLng l4 = new LatLng(28.55988210142341, 77.20577847637541);
-    ArrayList<String> title;
-    ArrayList<String> Name;
-ArrayList<Online_person>arrayListt=new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,29 +68,6 @@ ArrayList<Online_person>arrayListt=new ArrayList<>();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
-        //  getname();
-
-
-        title = new ArrayList<>();
-        Name = new ArrayList<>();
-
-
-        arrayList.add(l1);
-        arrayList.add(l2);
-        arrayList.add(l3);
-        arrayList.add(l4);
-
-        title.add("8287018255");
-        title.add("9710000528");
-        title.add("9098765432");
-        title.add("9087643222");
-
-        Name.add("dev");
-        Name.add("Mirran");
-        Name.add("Rahul");
-        Name.add("Rohit");
 
 
     }
@@ -169,7 +140,7 @@ ArrayList<Online_person>arrayListt=new ArrayList<>();
 
 
                             namelist.add(name);
-                            Toast.makeText(Showing_person_google.this, phone + name + lat + "   " + longt + "", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(Showing_person_google.this, phone + name + lat + "   " + longt + "", Toast.LENGTH_SHORT).show();
                             float zoomLevel = 11.0f; //This goes up to 21
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
                             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));

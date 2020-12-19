@@ -274,7 +274,7 @@ public class Edit_Profile extends AppCompatActivity implements AdapterView.OnIte
                         JSONObject jsonObject = new JSONObject(s);
                         Toast.makeText(Edit_Profile.this, "Details updated successfully   !!!!!", Toast.LENGTH_SHORT).show();
 
-                        Intent in = new Intent(Edit_Profile.this, MapsActivity.class);
+                        Intent in = new Intent(Edit_Profile.this, Currnet_Location.class);
                         startActivity(in);
 
                         // Toast.makeText(Edit_Profile.this, school_name+school_stage+"", Toast.LENGTH_SHORT).show();

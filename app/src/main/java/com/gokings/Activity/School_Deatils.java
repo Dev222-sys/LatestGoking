@@ -130,7 +130,7 @@ public class School_Deatils extends AppCompatActivity  implements AdapterView.On
                             String msg=jsonObject.getString("status");
 
                                 Toast.makeText(School_Deatils.this, msg+"", Toast.LENGTH_SHORT).show();
-                            Intent in=new Intent(School_Deatils.this, MapsActivity.class);
+                            Intent in=new Intent(School_Deatils.this, Currnet_Location.class);
                             startActivity(in);
 
                             hidepDialog();

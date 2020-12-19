@@ -1,48 +1,31 @@
 package com.gokings;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.gokings.Activity.Currnet_Location;
 import com.gokings.Activity.Edit_Profile;
-import com.gokings.Activity.MapsActivity;
 import com.gokings.Activity.Showing_person_google;
-import com.gokings.databasee.RetrofitClient;
 import com.gokings.model.Online_person;
 import com.gokings.storage.SharedPrefManager;
 import com.google.android.gms.maps.model.LatLng;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import soup.neumorphism.NeumorphButton;
-import soup.neumorphism.NeumorphTextView;
 
 public class form extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -77,7 +60,7 @@ public class form extends AppCompatActivity implements AdapterView.OnItemSelecte
       imageback.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
-              Intent intent=new Intent(form.this,MapsActivity.class);
+              Intent intent=new Intent(form.this, Currnet_Location.class);
               startActivity(intent);
           }
       });

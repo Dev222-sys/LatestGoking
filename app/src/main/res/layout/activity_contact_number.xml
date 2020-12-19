@@ -83,41 +83,79 @@
 
 
         </soup.neumorphism.NeumorphCardView>
-        <soup.neumorphism.NeumorphCardView
+
+        <LinearLayout
+            android:orientation="horizontal"
+
+            android:layout_marginTop="10dp"
+
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginTop="5dp"
-            app:neumorph_shadowElevation="6dp"
-
-
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            style="@style/Widget.Neumorph.CardView"
-            app:neumorph_shapeType="pressed">
-
-            <EditText
-                android:id="@+id/number"
+            android:layout_height="wrap_content">
+            <soup.neumorphism.NeumorphCardView
                 android:layout_width="match_parent"
-                android:background="@drawable/no_background"
+                android:layout_height="80dp"
+                android:layout_marginTop="5dp"
+                app:neumorph_shadowElevation="6dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                style="@style/Widget.Neumorph.CardView"
+                app:neumorph_shapeType="pressed">
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/code"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    app:ccp_textSize="@dimen/txt16"
+                    app:ccp_areaCodeDetectedCountry="true"
+                    app:ccp_autoDetectCountry="true"
+                    app:ccp_showNameCode="true"
+                    android:layout_width="80dp"
+                    app:ccp_contentColor="@color/blue"
+                    app:ccpDialog_backgroundColor="@color/white"
 
-                android:layout_height="wrap_content"
-                android:hint="@string/contact_hint"
-                android:drawablePadding="10sp"
-                android:drawableLeft="@drawable/flag"
-                android:inputType="phone"
-                android:backgroundTint="@color/black"
-                 android:padding="14dp"
-                  android:paddingEnd="10dp"
+                    android:layout_height="match_parent">
+
+                </com.hbb20.CountryCodePicker>
+
+<!--
+
+                <com.scrounger.countrycurrencypicker.library.Buttons.CountryCurrencyButton
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:country_code="US"
+                    android:id="@+id/cuntterycode"
+                    app:show_currency="true"
+                    />
+-->
+
+                <EditText
+                    android:layout_marginLeft="80dp"
+                    android:id="@+id/number"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/no_background"
+
+                    android:layout_height="wrap_content"
+                    android:hint="@string/contact_hint"
+                    android:drawablePadding="10sp"
+                    android:inputType="phone"
+                    android:backgroundTint="@color/black"
+                    android:padding="14dp"
+                    android:paddingEnd="10dp"
                     android:textColor="@color/text_color"
-                  android:textColorHint="@color/text_color"
-                  android:textCursorDrawable="@drawable/curser"
-            />
+                    android:textColorHint="@color/text_color"
+                    android:textCursorDrawable="@drawable/curser"
+                    />
 
 
 
 
 
-        </soup.neumorphism.NeumorphCardView>
+            </soup.neumorphism.NeumorphCardView>
+
+        </LinearLayout>
+
         <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Activity.School_Deatils"></activity>
+        <activity android:name=".Activity.Currnet_Location"></activity>
+        <activity android:name=".Activity.School_Deatils" />
         <activity android:name=".form" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -34,9 +35,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".Activity.MapsActivity"
-            android:label="@string/title_activity_showing_person_google" />
         <activity
             android:name=".Activity.Showing_person_google"
             android:label="@string/title_activity_maps" />

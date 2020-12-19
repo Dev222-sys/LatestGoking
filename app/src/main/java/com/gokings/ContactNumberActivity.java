@@ -12,10 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gokings.Activity.MapsActivity;
+import com.gokings.Activity.Currnet_Location;
 import com.gokings.Activity.Terms_Service;
 import com.gokings.databasee.RetrofitClient;
 import com.gokings.storage.SharedPrefManager;
+import com.hbb20.CountryCodePicker;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import org.json.JSONException;
@@ -39,6 +40,8 @@ public class ContactNumberActivity extends AppCompatActivity {
 TextView terms;
 
     protected SwipeRefreshLayout swipeView;
+    CountryCodePicker code;
+
 
 
     @Override
@@ -66,6 +69,31 @@ TextView terms;
 
             }
         });
+
+
+        /*CountryCurrencyButton button = (CountryCurrencyButton) findViewById(R.id.cuntterycode);
+        button.setOnClickListener(new CountryCurrencyPickerListener() {
+            @Override
+            public void onSelectCountry(Country country) {
+                if (country.getCurrency() == null) {
+
+                    Toast.makeText(ContactNumberActivity.this,
+                            String.format("name: %s\ncode: %s", country.getName(), country.getCode())
+                            , Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ContactNumberActivity.this,
+
+                            String.format("name: %s\ncurrencySymbol: %s", country.getName(),  country.getFlagId()+country.getCurrency().getSymbol()), Toast.LENGTH_SHORT).show();
+
+                   // Toast.makeText(ContactNumberActivity.this, country.getCode()+"", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onSelectCurrency(Currency currency) {
+
+            }
+        });*/
         
     }
     public   void initview()
@@ -75,6 +103,8 @@ TextView terms;
         checkbox=findViewById(R.id.checkbox);
         terms=findViewById(R.id.terms);
         name=findViewById(R.id.name);
+        code=findViewById(R.id.code);
+
 
 
 
@@ -99,7 +129,14 @@ TextView terms;
       //  swipeView.setRefreshing(true);
         final String mobile= number.getText().toString().trim();
 
+        String codee= code.getFullNumber();
+        final String mobilee=mobile+codee;
+
+        //Toast.makeText(ContactNumberActivity.this, codee+"", Toast.LENGTH_SHORT).show();
+
+
         final String name1=name.getText().toString().trim();
+
 
 
 
@@ -114,13 +151,13 @@ TextView terms;
         {
             number.setError("Please enter a valid mobile ");
             number.requestFocus();
-            util.showtoast(ContactNumberActivity.this,"Please enter a valid mobile Number");
+           // util.showtoast(ContactNumberActivity.this,"Please enter a valid mobile Number");
 
             hidepDialog();
         }
         else if(!checkbox.isChecked()){
             checkbox.setError("Please checked it");
-            util.showtoast(ContactNumberActivity.this,"Please checked it");
+          //  util.showtoast(ContactNumberActivity.this,"Please checked it");
 
             checkbox.requestFocus();
             hidepDialog();
@@ -158,7 +195,7 @@ TextView terms;
 
 
                                     //Toast.makeText(ContactNumberActivity.this, id+name+"", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(ContactNumberActivity.this, MapsActivity.class);
+                                    Intent intent = new Intent(ContactNumberActivity.this, Currnet_Location.class);
                                     startActivity(intent);
                                     hidepDialog();
 

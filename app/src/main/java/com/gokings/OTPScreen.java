@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.gokings.Activity.MapsActivity;
 import com.gokings.Activity.School_Deatils;
 import com.gokings.databasee.RetrofitClient;
 import com.gokings.storage.SharedPrefManager;
