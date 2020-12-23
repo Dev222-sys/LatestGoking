@@ -32,23 +32,21 @@ import soup.neumorphism.NeumorphButton;
 
 
 public class ContactNumberActivity extends AppCompatActivity {
-    private  NeumorphButton button;
+    private NeumorphButton button;
     private EditText number;
     private EditText name;
-    private CheckBox  checkbox;
+    private CheckBox checkbox;
     KProgressHUD pDialog;
-TextView terms;
+    TextView terms;
 
     protected SwipeRefreshLayout swipeView;
-    CountryCodePicker code;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_number);
-        util.blackiteamstatusbar(ContactNumberActivity.this,R.color.light_background);
+        util.blackiteamstatusbar(ContactNumberActivity.this, R.color.light_background);
 
         initview();
         button.setOnClickListener(new View.OnClickListener() {
@@ -65,47 +63,21 @@ TextView terms;
                 showpDialog();
 
                 startActivity(new Intent(ContactNumberActivity.this, Terms_Service.class));
-             //   hidepDialog();
+                //   hidepDialog();
 
             }
         });
 
 
-        /*CountryCurrencyButton button = (CountryCurrencyButton) findViewById(R.id.cuntterycode);
-        button.setOnClickListener(new CountryCurrencyPickerListener() {
-            @Override
-            public void onSelectCountry(Country country) {
-                if (country.getCurrency() == null) {
 
-                    Toast.makeText(ContactNumberActivity.this,
-                            String.format("name: %s\ncode: %s", country.getName(), country.getCode())
-                            , Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(ContactNumberActivity.this,
-
-                            String.format("name: %s\ncurrencySymbol: %s", country.getName(),  country.getFlagId()+country.getCurrency().getSymbol()), Toast.LENGTH_SHORT).show();
-
-                   // Toast.makeText(ContactNumberActivity.this, country.getCode()+"", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onSelectCurrency(Currency currency) {
-
-            }
-        });*/
-        
     }
-    public   void initview()
-    {
+
+    public void initview() {
         button = (NeumorphButton) findViewById(R.id.button);
-        number=findViewById(R.id.number);
-        checkbox=findViewById(R.id.checkbox);
-        terms=findViewById(R.id.terms);
-        name=findViewById(R.id.name);
-        code=findViewById(R.id.code);
-
-
+        number = findViewById(R.id.number);
+        checkbox = findViewById(R.id.checkbox);
+        terms = findViewById(R.id.terms);
+        name = findViewById(R.id.name);
 
 
     }
@@ -116,7 +88,7 @@ TextView terms;
         showpDialog();
 
         startActivity(new Intent(ContactNumberActivity.this, PrivacyPolicyActivity.class));
-       // hidepDialog();
+
 
     }
 
@@ -125,19 +97,13 @@ TextView terms;
         showpDialog();
 
 
-        //  Toast.makeText(context, Devicetoken+"", Toast.LENGTH_SHORT).show();
-      //  swipeView.setRefreshing(true);
-        final String mobile= number.getText().toString().trim();
+        final String mobile = number.getText().toString().trim();
 
-        String codee= code.getFullNumber();
-        final String mobilee=mobile+codee;
 
         //Toast.makeText(ContactNumberActivity.this, codee+"", Toast.LENGTH_SHORT).show();
 
 
-        final String name1=name.getText().toString().trim();
-
-
+        final String name1 = name.getText().toString().trim();
 
 
         if (TextUtils.isEmpty(name1)) {
@@ -145,99 +111,85 @@ TextView terms;
             name.requestFocus();
             //util.showtoast(ContactNumberActivity.this,"Please enter Mobile Number");
             hidepDialog();
-        }
-
-        else  if (mobile.length()!=10)
-        {
+        } else if (mobile.length() != 10) {
             number.setError("Please enter a valid mobile ");
             number.requestFocus();
-           // util.showtoast(ContactNumberActivity.this,"Please enter a valid mobile Number");
+            // util.showtoast(ContactNumberActivity.this,"Please enter a valid mobile Number");
 
             hidepDialog();
-        }
-        else if(!checkbox.isChecked()){
+        } else if (!checkbox.isChecked()) {
             checkbox.setError("Please checked it");
-          //  util.showtoast(ContactNumberActivity.this,"Please checked it");
+            //  util.showtoast(ContactNumberActivity.this,"Please checked it");
 
             checkbox.requestFocus();
             hidepDialog();
-        }
+        } else {
 
-        else {
-
-            Call<ResponseBody> call= RetrofitClient
+            Call<ResponseBody> call = RetrofitClient
                     .getInstance()
-                    .getApi().send_otp(name1,mobile);
+                    .getApi().send_otp(name1, mobile);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    String s=null;
+                    String s = null;
 
-                        if (response.code()==200) {
+                    if (response.code() == 200) {
 
-                            try {
+                        try {
 
-                                s=response.body().string();
-                                JSONObject jsonObject=new JSONObject(s);
-                                String status_code=jsonObject.getString("status_code");
+                            s = response.body().string();
+                            JSONObject jsonObject = new JSONObject(s);
+                            String status_code = jsonObject.getString("status_code");
 
-                                if (status_code.equals("0"))
-                                {
+                            if (status_code.equals("0")) {
 
-                                    String id=jsonObject.getString("id");
-                                    String name=jsonObject.getString("user_name");
-                                    String phone=jsonObject.getString("phone");
+                                String id = jsonObject.getString("id");
+                                String name = jsonObject.getString("user_name");
+                                String phone = jsonObject.getString("phone");
 
-                                    SharedPrefManager.getInstans(getApplicationContext()).userLogin(id,name,phone);
-
+                                SharedPrefManager.getInstans(getApplicationContext()).userLogin(id, name, phone);
 
 
+                                //Toast.makeText(ContactNumberActivity.this, id+name+"", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(ContactNumberActivity.this, Currnet_Location.class);
+                                startActivity(intent);
+                                hidepDialog();
 
+                            } else {
 
-                                    //Toast.makeText(ContactNumberActivity.this, id+name+"", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(ContactNumberActivity.this, Currnet_Location.class);
-                                    startActivity(intent);
-                                    hidepDialog();
-
-                                }else {
-
-                                String otp=jsonObject.getString("otp");
-                                String status=jsonObject.getString("status");
+                                String otp = jsonObject.getString("otp");
+                                String status = jsonObject.getString("status");
                                 Bundle bundle = new Bundle();
-                                bundle.putString("otp",otp);
-                                bundle.putString("mobile_no",mobile);
-                                bundle.putString("name1",name1);
+                                bundle.putString("otp", otp);
+                                bundle.putString("mobile_no", mobile);
+                                bundle.putString("name1", name1);
 
-                                Intent intent = new Intent(ContactNumberActivity.this,OTPScreen.class);
+                                Intent intent = new Intent(ContactNumberActivity.this, OTPScreen.class);
                                 intent.putExtras(bundle);
                                 startActivity(intent);
 
-                                Toast.makeText(ContactNumberActivity.this, status+"", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ContactNumberActivity.this, status + "", Toast.LENGTH_SHORT).show();
 
                                 hidepDialog();
 
-                                }
+                            }
                             //    Toast.makeText(ContactNumberActivity.this, otp+"", Toast.LENGTH_SHORT).show();
 
 
-
-                            } catch (IOException | JSONException e) {
-                                e.printStackTrace();
-                            }
-
-
+                        } catch (IOException | JSONException e) {
+                            e.printStackTrace();
                         }
-                        else
-                        {
-                            Toast.makeText(ContactNumberActivity.this, "Please enter your details", Toast.LENGTH_SHORT).show();
 
-                        }
+
+                    } else {
+                        Toast.makeText(ContactNumberActivity.this, "Please enter your details", Toast.LENGTH_SHORT).show();
+
+                    }
 
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-
 
 
                 }
@@ -246,9 +198,8 @@ TextView terms;
         }
 
 
-
-
     }
+
     private void loginByServer() {
         pDialog = KProgressHUD.create(this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -258,6 +209,7 @@ TextView terms;
                 .setDimAmount(0.5f)
                 .show();
     }
+
     private void showpDialog() {
         if (!pDialog.isShowing())
             pDialog.show();

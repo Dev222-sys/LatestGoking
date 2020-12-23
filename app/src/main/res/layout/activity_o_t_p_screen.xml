@@ -40,7 +40,7 @@
         android:layout_marginBottom='10sp'
         android:text="@string/number"
         android:textColor="@color/black"
-        android:textSize="17dp" />
+        android:textSize="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -103,20 +103,46 @@
 
 
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/space20"
 
+
+    android:gravity="center"
+    android:layout_height="wrap_content">
+
+    <TextView
+
+
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dont_recivied"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
+    <TextView
+        android:id="@+id/resend_otp"
+        android:layout_marginLeft="@dimen/space20"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/resend"
+        android:textColor="@color/blue"
+        android:textSize="19dp" />
+
+</LinearLayout>
     <soup.neumorphism.NeumorphButton
-
+        android:layout_gravity="center"
         android:id="@+id/cont"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="Continue"
-
         android:textSize="20dp"
 
-        android:layout_marginLeft='10sp'
-        android:layout_marginRight='10sp'
-        android:layout_marginBottom='10sp'
         android:background="@drawable/button_desing"
         android:textColor="@color/text_color"
         style="@style/Widget.Neumorph.Button">

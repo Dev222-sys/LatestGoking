@@ -7,6 +7,10 @@
     <string name="update">Get Updated by entering your name,school name and education stage</string>
 
     <string name="contact_hint">05XXXXXXX</string>
+
+    <string name="resend">RESEND OTP</string>
+
+    <string name="dont_recivied">Dont Receive OTP?</string>
     <string name="name">Enter your Full Name please</string>
     <string name="get_started">Get started by entering your name and phone number</string>
     <string name="terms"><u>Terms and Service</u></string>
