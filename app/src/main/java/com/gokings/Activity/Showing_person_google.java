@@ -100,7 +100,7 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
 
             location = bundle.getString("location");
 
-          Toast.makeText(this, location + "", Toast.LENGTH_SHORT).show();
+         // Toast.makeText(this, location + "", Toast.LENGTH_SHORT).show();
             //Do something here if data  received
         } else {
             //Do something here if data not received
