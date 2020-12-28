@@ -85,6 +85,8 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
         String id = SharedPrefManager.getInstans(getApplicationContext()).getUserId();
 
         String radiuss = null, School = null, School_type = null;
+        String location = null;
+
 
         Bundle bundle = this.getIntent().getExtras();
 
@@ -95,7 +97,10 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
 
             School = bundle.getString("School");
             School_type = bundle.getString("School_type");
-            //  Toast.makeText(this, radiuss + School + School_type + "", Toast.LENGTH_SHORT).show();
+
+            location = bundle.getString("location");
+
+          Toast.makeText(this, location + "", Toast.LENGTH_SHORT).show();
             //Do something here if data  received
         } else {
             //Do something here if data not received
@@ -104,7 +109,8 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
 
         Call<ResponseBody> call = RetrofitClient
                 .getInstance()
-                .getApi().sendradius(id, radiuss, School, School_type);
+    .getApi().sendradius(id, radiuss, School, School_type,location);
+//        .getApi().sendradius(id, radiuss, School, School_type);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -117,6 +123,7 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
                     try {
 
                         s = response.body().string();
+
                         JSONObject jsonObject = new JSONObject(s);
                         JSONArray jsonArray = jsonObject.getJSONArray("records");
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -158,9 +165,12 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
                     }
 
                 } else if (response.code() == 404) {
-                    Toast.makeText(Showing_person_google.this, "Users Not Found Try Another Filter !!!!", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(Showing_person_google.this, form.class);
-                    startActivity(intent);
+
+
+                        Toast.makeText(Showing_person_google.this, "User not found. Maybe try increasing your radius !", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(Showing_person_google.this, form.class);
+                        startActivity(intent);
+
 
                 }
                 hidepDialog();
@@ -170,7 +180,7 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 hidepDialog();
-                Toast.makeText(Showing_person_google.this, call.toString() + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Showing_person_google.this,  "Server Error", Toast.LENGTH_SHORT).show();
             }
         });
 

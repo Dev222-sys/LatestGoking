@@ -16,8 +16,17 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    splits {
+        density {
+            enable true
+            exclude "ldpi", "xxhdpi", "xxxhdpi"
+            compatibleScreens 'small', 'normal', 'large', 'xlarge'
         }
     }
 }

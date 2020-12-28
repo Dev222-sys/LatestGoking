@@ -103,33 +103,6 @@
                 style="@style/Widget.Neumorph.CardView"
                 app:neumorph_shapeType="pressed">
 
-                <!--<com.hbb20.CountryCodePicker
-                    android:id="@+id/code"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    app:ccp_textSize="@dimen/txt16"
-                    app:ccp_areaCodeDetectedCountry="true"
-                    app:ccp_autoDetectCountry="true"
-                    app:ccp_showNameCode="true"
-                    android:layout_width="80dp"
-                    app:ccp_contentColor="@color/blue"
-                    app:ccpDialog_backgroundColor="@color/white"
-
-                    android:layout_height="match_parent">
-
-                </com.hbb20.CountryCodePicker>-->
-
-<!--
-
-                <com.scrounger.countrycurrencypicker.library.Buttons.CountryCurrencyButton
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:country_code="US"
-                    android:id="@+id/cuntterycode"
-                    app:show_currency="true"
-                    />
--->
 
                 <EditText
                     android:id="@+id/number"

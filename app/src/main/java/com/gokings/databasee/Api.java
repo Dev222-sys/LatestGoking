@@ -68,9 +68,21 @@ public interface Api {
             @Field("id") String id,
             @Field("radius") String radius,
             @Field("school name") String school_name,
-            @Field("school categories") String school_categories
+            @Field("school categories") String school_categories,
+            @Field("location") String location
     );
 
+/*
+    @FormUrlEncoded
+    @POST("online_person.php/")
+    Call<ResponseBody> sendradius(
+
+            @Field("id") String id,
+            @Field("radius") String radius,
+            @Field("school name") String school_name,
+            @Field("school categories") String school_categories
+    );
+*/
 
    /* @FormUrlEncoded
     @POST("online_person.php/")

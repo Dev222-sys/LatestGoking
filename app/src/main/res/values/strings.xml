@@ -130,6 +130,10 @@ Authorized service providers. We may share your personal and non-personal inform
         <item>Primary</item>
         <item>Secondary</item>
     </string-array>
+    <string-array name="location">
+        <item>Current Location</item>
+        <item>Home Location</item>
+    </string-array>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_showing_person_google">Map</string>
 

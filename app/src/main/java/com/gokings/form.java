@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -33,7 +34,7 @@ public class form extends AppCompatActivity implements AdapterView.OnItemSelecte
     KProgressHUD pDialog;
     ImageView imageback;
     EditText radius;
-    String School,School_type;
+    String School,School_type,locationn;
 
     LatLng latLng;
     String name,phone,lat,longt;
@@ -88,6 +89,19 @@ public class form extends AppCompatActivity implements AdapterView.OnItemSelecte
       primary1.setOnItemSelectedListener(form.this);
 
 
+        ArrayAdapter location = ArrayAdapter.createFromResource(
+                this,
+                R.array.location,
+                R.layout.color_spinner_layout
+        );
+        location.setDropDownViewResource(R.layout.spinner_dropdown_layout);
+        Spinner location1= findViewById(R.id.location);
+        location1.setAdapter( location);
+        location1.setOnItemSelectedListener(form.this);
+
+
+
+
 
         //anyeca = findViewById(R.id.anyeca);
 
@@ -97,29 +111,17 @@ public class form extends AppCompatActivity implements AdapterView.OnItemSelecte
             public void onClick(View view) {
 
               number_validation();
+              //  Toast.makeText(form.this, locationn+"", Toast.LENGTH_SHORT).show();
 
 
             }
         });
 
 
-      /*  anyeca.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                time.setVisibility(View.VISIBLE);
-                on.setVisibility(View.VISIBLE);
-            }
-        });*/
 
 
 
     }
-    public void openActivity_create(){
-
-        Intent intent = new Intent(this, create.class);
-        startActivity(intent);
-    }
-
 
 
     public void number_validation() {
@@ -141,6 +143,7 @@ public class form extends AppCompatActivity implements AdapterView.OnItemSelecte
             basket.putString("radiuss", radiuss);
             basket.putString("School", School);
             basket.putString("School_type", School_type);
+            basket.putString("location", locationn);
             Intent intent = new Intent(form.this, Showing_person_google.class);
             intent.putExtras(basket);
             startActivity(intent);
@@ -174,34 +177,6 @@ public class form extends AppCompatActivity implements AdapterView.OnItemSelecte
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
-
-/*
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-       // Toast.makeText(this,adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-
-        switch (adapterView.getId()) {
-            case R.array.maptype_array:
-                School = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(this, School+"", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.primary:
-                School_type = adapterView.getItemAtPosition(i).toString();
-
-//                Toast.makeText(this, School_type+"", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                break;
-        }
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-}*/
 @Override
 public void onItemSelected(AdapterView<?> parent, View v, int position,
                            long id){
@@ -219,6 +194,21 @@ public void onItemSelected(AdapterView<?> parent, View v, int position,
         School_type = parent.getItemAtPosition(position).toString();
 
         //Toast.makeText(this, School_type+"", Toast.LENGTH_SHORT).show();
+    }
+
+    else if(spinner.getId() == R.id.location)
+    {
+        String location = parent.getItemAtPosition(position).toString();
+        if (location.equals("Current Location"))
+        {
+            locationn="clocation";
+
+        }else {
+            locationn="hlocation";
+
+        }
+
+
     }
 
 }

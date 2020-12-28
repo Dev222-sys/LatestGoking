@@ -111,8 +111,8 @@ public class ContactNumberActivity extends AppCompatActivity {
             name.requestFocus();
             //util.showtoast(ContactNumberActivity.this,"Please enter Mobile Number");
             hidepDialog();
-        } else if (mobile.length() != 10) {
-            number.setError("Please enter a valid mobile ");
+        } else if (mobile.length() != 9) {
+            number.setError("Please enter a valid mobile Number Without Country Code !!! ");
             number.requestFocus();
             // util.showtoast(ContactNumberActivity.this,"Please enter a valid mobile Number");
 
