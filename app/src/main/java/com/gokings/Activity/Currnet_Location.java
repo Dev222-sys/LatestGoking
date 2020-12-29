@@ -11,6 +11,9 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gokings.R;
@@ -52,12 +55,22 @@ public class Currnet_Location extends AppCompatActivity {
     Button Searching;
     CardView maps;
     KProgressHUD pDialog;
+    RadioButton cLocation,hLocation;
+    String address_type ="null";
+    RadioGroup radiogroup;
+    TextView location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_currnet__location);
         Searching=findViewById(R.id.Searching);
         maps=findViewById(R.id.maps);
+
+        cLocation=findViewById(R.id.cLocation);
+        hLocation=findViewById(R.id.hLocation);
+        radiogroup=findViewById(R.id.radiogroup);
+        location=findViewById(R.id.location);
         util.blackiteamstatusbar(Currnet_Location.this, R.color.light_background);
 
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.Flag_F);
@@ -66,7 +79,8 @@ public class Currnet_Location extends AppCompatActivity {
         Searching.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendlatlong();
+                location();
+
 
             }
         });
@@ -116,12 +130,14 @@ public class Currnet_Location extends AppCompatActivity {
                 srf.getMapAsync(new OnMapReadyCallback() {
                     @Override
                     public void onMapReady(GoogleMap googleMap) {
+                        //Toast.makeText(Currnet_Location.this, "yes", Toast.LENGTH_SHORT).show();
                         LatLng latLng=new LatLng(location.getLatitude(),location.getLongitude());
                         lat=location.getLatitude();
                         longt=location.getLongitude();
                         MarkerOptions markerOptions=new MarkerOptions().position(latLng).title("You are here.....!!");
                         googleMap.addMarker(markerOptions);
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+
                         maps.setVisibility(View.VISIBLE);
 
                     }
@@ -134,12 +150,45 @@ public class Currnet_Location extends AppCompatActivity {
 
     }
 
+    public  void location()
+    {
+
+
+        if (hLocation.isChecked()) {
+
+            address_type = "hlocation";
+
+            sendlatlong();
+
+        }else if (cLocation.isChecked()) {
+
+            address_type = "clocation";
+            sendlatlong();
+
+        }
+        else {
+
+            location.setError("Please Select");
+            location.requestFocus();
+            Toast.makeText(this, "Please Select Location Type...!!", Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+
+
+
     public  void sendlatlong()
     {
-        loginByServer();
+
+
+
+
+
+       loginByServer();
         showpDialog();
 
-//        Toast.makeText(MapsActivity.this, lat +lon+ "", Toast.LENGTH_SHORT).show();
+      Toast.makeText(this, address_type+ "", Toast.LENGTH_SHORT).show();
 
         String id = SharedPrefManager.getInstans(getApplicationContext()).getUserId();
         String latt=String.valueOf(lat);
@@ -150,7 +199,7 @@ public class Currnet_Location extends AppCompatActivity {
 
         Call<ResponseBody> call= RetrofitClient
                 .getInstance()
-                .getApi().SendLatlong(id,latt,longtt);
+                .getApi().SendLatlong(id,address_type,latt,longtt);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

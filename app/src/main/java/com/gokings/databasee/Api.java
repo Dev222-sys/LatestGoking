@@ -27,6 +27,7 @@ public interface Api {
     Call<ResponseBody> SendLatlong(
 
             @Field("id") String id,
+            @Field("location_type") String location_type,
             @Field("lat") String lat,
             @Field("long") String longt);
 

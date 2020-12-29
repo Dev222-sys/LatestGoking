@@ -19,29 +19,81 @@
 
 
         <fragment
-            xmlns:map="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/google_map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-          />
+            />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/maps"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:minHeight="170dp"
         app:cardBackgroundColor="@color/light_background"
         app:cardCornerRadius="4dp"
+        android:minHeight="180dp"
         app:cardElevation="5dp">
+        <TextView
+            android:layout_marginLeft="@dimen/space5"
+            android:layout_marginRight="@dimen/space5"
+            android:layout_marginTop="@dimen/space5"
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/select_location"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+        <LinearLayout
+
+            android:layout_marginTop="55dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioGroup
+                android:id="@+id/radiogroup"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/cLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/clocation"
+                    android:textColor="@color/text_color"
+                    android:textSize="18sp"
+                   />
+
+                <RadioButton
+                    android:id="@+id/hLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:shadowColor="@color/red"
+                    android:layout_marginTop="5dp"
+                    android:checked="false"
+                    android:text="@string/hlocation"
+                    android:textColor="@color/text_color"
+
+                    android:textSize="18sp" />
+
+
+
+            </RadioGroup>
+
+        </LinearLayout>
 
 
 
         <soup.neumorphism.NeumorphButton
+            android:layout_marginTop="40dp"
             android:id="@+id/Searching"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -58,4 +110,3 @@
     </androidx.cardview.widget.CardView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
