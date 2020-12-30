@@ -173,6 +173,15 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
 
 
                 }
+                else if (response.code() == 500) {
+
+
+                    Toast.makeText(Showing_person_google.this, "500--User not found. Maybe try increasing your radius !", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Showing_person_google.this, form.class);
+                    startActivity(intent);
+
+
+                }
                 hidepDialog();
 
             }
