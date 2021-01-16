@@ -94,7 +94,7 @@
             android:gravity="center"
 
             android:text="@string/School_Name"
-            android:textColor="@color/cream"
+            android:textColor="@color/black"
             android:textSize="18dp" />
 
         <!-- <View
@@ -165,7 +165,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/School_type"
-            android:textColor="@color/cream"
+            android:textColor="@color/black"
             android:textSize="18dp" />
 
 

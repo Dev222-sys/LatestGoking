@@ -6,7 +6,7 @@
     <string name="update_pro">Update my profile information</string>
     <string name="update">Get Updated by entering your name,school name and education stage</string>
 
-    <string name="contact_hint">05XXXXXXX</string>
+    <string name="contact_hint">XXXXXXXXX</string>
 
     <string name="resend">RESEND OTP</string>
 
@@ -19,7 +19,9 @@
     <string name="privacy_policy"><u>Privacy Policy</u></string>
     <string name="Enter">Enter OTP</string>
     <string name="number">The OTP has been sent to your registered mobile number</string>
+
     <string name="does"> Tell us about your child to help us find the right carpool for you </string>
+    <string name="search_from">Where would you like to search from - if you are home please select home</string>
 
     <string name="School_Name"> Please select your School name </string>
     <string name="select_location"> If you are at home select home location if not select current location</string>

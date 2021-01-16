@@ -115,8 +115,18 @@
 
 
     </soup.neumorphism.NeumorphCardView>
-        <soup.neumorphism.NeumorphCardView
 
+
+        <TextView
+            android:layout_marginTop="@dimen/space10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/search_from"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
             android:layout_height="80dp"
             app:neumorph_shadowElevation="6dp"

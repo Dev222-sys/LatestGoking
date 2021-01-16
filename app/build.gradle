@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\devender\\Desktop\\cridential key\\goKing\\gokings.jks')
+            storePassword 'gokings'
+            keyAlias 'key0'
+            keyPassword 'gokings'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
 
@@ -8,7 +16,7 @@ android {
         applicationId "com.gokings"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1
+        versionCode 5
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -19,16 +27,17 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
-    splits {
+   /* splits {
         density {
             enable true
             exclude "ldpi", "xxhdpi", "xxxhdpi"
             compatibleScreens 'small', 'normal', 'large', 'xlarge'
         }
-    }
+    }*/
 }
 
 dependencies {
@@ -60,10 +69,7 @@ dependencies {
 
     //for permission
     implementation 'com.karumi:dexter:6.2.1'
-
-
 //retrofit
-
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'

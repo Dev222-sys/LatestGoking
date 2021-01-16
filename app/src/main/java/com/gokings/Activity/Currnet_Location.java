@@ -123,6 +123,7 @@ public class Currnet_Location extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+
         Task<Location> task = client.getLastLocation();
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
@@ -131,14 +132,27 @@ public class Currnet_Location extends AppCompatActivity {
                     @Override
                     public void onMapReady(GoogleMap googleMap) {
                         //Toast.makeText(Currnet_Location.this, "yes", Toast.LENGTH_SHORT).show();
-                        LatLng latLng=new LatLng(location.getLatitude(),location.getLongitude());
-                        lat=location.getLatitude();
-                        longt=location.getLongitude();
-                        MarkerOptions markerOptions=new MarkerOptions().position(latLng).title("You are here.....!!");
-                        googleMap.addMarker(markerOptions);
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+                        if (location!=null)
+                        {
 
-                        maps.setVisibility(View.VISIBLE);
+                            LatLng latLng=new LatLng(location.getLatitude(),location.getLongitude());
+                            lat=location.getLatitude();
+                            longt=location.getLongitude();
+                            MarkerOptions markerOptions=new MarkerOptions().position(latLng).title("You are here.....!!");
+                            googleMap.addMarker(markerOptions);
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+
+                            maps.setVisibility(View.VISIBLE);
+                        }else
+                        {
+
+
+
+
+
+
+                        }
+
 
                     }
                 });
@@ -188,7 +202,7 @@ public class Currnet_Location extends AppCompatActivity {
        loginByServer();
         showpDialog();
 
-      Toast.makeText(this, address_type+ "", Toast.LENGTH_SHORT).show();
+    //  Toast.makeText(this, address_type+ "", Toast.LENGTH_SHORT).show();
 
         String id = SharedPrefManager.getInstans(getApplicationContext()).getUserId();
         String latt=String.valueOf(lat);

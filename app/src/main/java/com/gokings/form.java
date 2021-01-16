@@ -28,7 +28,8 @@ import java.util.ArrayList;
 
 import soup.neumorphism.NeumorphButton;
 
-public class form extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class
+form extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     NeumorphButton button;
     KProgressHUD pDialog;

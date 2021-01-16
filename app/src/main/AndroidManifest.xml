@@ -20,9 +20,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Activity.Currnet_Location"></activity>
-        <activity android:name=".Activity.School_Deatils" />
-        <activity android:name=".form" />
+        <activity android:name=".Activity.Currnet_Location"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"
+            > </activity>
+        <activity android:name=".Activity.School_Deatils"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"></activity>
+        <activity android:name=".form"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -37,16 +44,35 @@
 
         <activity
             android:name=".Activity.Showing_person_google"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Activity.Terms_Service" />
-        <activity android:name=".create" />
-        <activity android:name=".Activity.Edit_Profile" />
-        <activity android:name=".PrivacyPolicyActivity" />
+        <activity android:name=".Activity.Terms_Service"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"/>
+        <activity android:name=".create"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"/>
+
+        <activity android:name=".Activity.Edit_Profile"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"/>
+
+        <activity android:name=".PrivacyPolicyActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"/>
         <activity
             android:name=".OTPScreen"
-            android:parentActivityName=".ContactNumberActivity" />
-        <activity android:name=".ContactNumberActivity" />
-        <activity android:name=".MainActivity">
+            android:parentActivityName=".ContactNumberActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"/>
+
+        <activity android:name=".ContactNumberActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
