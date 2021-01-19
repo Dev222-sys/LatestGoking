@@ -78,7 +78,7 @@
                     android:layout_marginLeft="10dp"
                     android:shadowColor="@color/red"
                     android:layout_marginTop="5dp"
-                    android:checked="true"
+                    android:checked="false"
 
                     android:text="@string/hlocation"
                     android:textColor="@color/text_color"

@@ -201,17 +201,6 @@
 
 
 
-<!--
-        android:drawableLeft="@drawable/ic_plus"
-        android:drawablePadding="10sp"
-        android:text="@string/add_another_activity"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:textSize="23dp" />-->
-
-
-
     <soup.neumorphism.NeumorphButton
         android:id="@+id/button"
         android:layout_width="200dp"

@@ -5,10 +5,14 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -145,6 +149,7 @@ public class Currnet_Location extends AppCompatActivity {
                             maps.setVisibility(View.VISIBLE);
                         }else
                         {
+                            showAlert();
 
 
 
@@ -194,11 +199,6 @@ public class Currnet_Location extends AppCompatActivity {
 
     public  void sendlatlong()
     {
-
-
-
-
-
        loginByServer();
         showpDialog();
 
@@ -265,4 +265,46 @@ public class Currnet_Location extends AppCompatActivity {
             pDialog.dismiss();
     }
 
+    private void showAlert(){
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setCancelable(false);
+
+        dialog.setTitle("Enable Location")
+                .setMessage("Your Location Setting is Set to 'off'.\nPlease Enable Location to" + "Use this App")
+                .setPositiveButton("Location Setting", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(myIntent);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        dialog.show();
+
+/*
+        final AlertDialog.Builder builder =  new AlertDialog.Builder(activity);
+        final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
+        final String message = "Do you want open GPS setting?";
+
+        builder.setMessage(message)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface d, int id) {
+                                activity.startActivity(new Intent(action));
+                                d.dismiss();
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface d, int id) {
+                                d.cancel();
+                            }
+                        });
+        builder.create().show();*/
+    }
 }
