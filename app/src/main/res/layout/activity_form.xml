@@ -8,35 +8,7 @@
     android:background="@color/background"
     tools:context=".form">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#B3B6B7"
-        android:elevation="4dp"
-        app:menu="@menu/options_menu"
-        android:outlineSpotShadowColor="@color/cream"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
 
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/imageback"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:text="Prabhat Trading Service"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                android:src="@drawable/ic_back" />
-
-
-
-        </RelativeLayout>
-
-    </androidx.appcompat.widget.Toolbar>
 
 
     <LinearLayout

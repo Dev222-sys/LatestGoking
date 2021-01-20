@@ -49,17 +49,17 @@ form extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
         setContentView(R.layout.activity_form);
         util.blackiteamstatusbar(form.this,R.color.light_background);
 
-      Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+     /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
       //setting the title
       toolbar.setTitle(" ");
       //placing toolbar in place of actionbar
       setSupportActionBar(toolbar);
 
-      imageback=findViewById(R.id.imageback);
+      imageback=findViewById(R.id.imageback);*/
       radius=findViewById(R.id.radius);
 
 
-      imageback.setOnClickListener(new View.OnClickListener() {
+     /* imageback.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
               Intent intent=new Intent(form.this, Currnet_Location.class);
@@ -67,7 +67,7 @@ form extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
           }
       });
 
-
+*/
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.maptype_array,
@@ -237,6 +237,17 @@ public void onItemSelected(AdapterView<?> parent, View v, int position,
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent in=new Intent(this,Currnet_Location.class);
+        startActivity(in);
+
     }
 
 }

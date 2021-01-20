@@ -7,6 +7,29 @@
     android:layout_width="match_parent"
     tools:context=".Activity.Currnet_Location"
     android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+
+        app:cardBackgroundColor="@color/light_background"
+        app:cardCornerRadius="4dp">
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:textAllCaps="false"
+            android:layout_gravity="right"
+            android:textColor="@color/text_color"
+            style="@style/Widget.Neumorph.Button"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
 
 
 
@@ -24,7 +47,11 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+
+            >
+
+
+        </fragment>
     </LinearLayout>
 
     <androidx.cardview.widget.CardView

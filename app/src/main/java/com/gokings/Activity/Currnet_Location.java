@@ -56,7 +56,7 @@ public class Currnet_Location extends AppCompatActivity {
     double longt;
 
     FusedLocationProviderClient client;
-    Button Searching;
+    Button Searching,edit_profile;
     CardView maps;
     KProgressHUD pDialog;
     RadioButton cLocation,hLocation;
@@ -70,6 +70,7 @@ public class Currnet_Location extends AppCompatActivity {
         setContentView(R.layout.activity_currnet__location);
         Searching=findViewById(R.id.Searching);
         maps=findViewById(R.id.maps);
+        edit_profile=findViewById(R.id.edit_profile);
 
         cLocation=findViewById(R.id.cLocation);
         hLocation=findViewById(R.id.hLocation);
@@ -86,6 +87,14 @@ public class Currnet_Location extends AppCompatActivity {
                 location();
 
 
+            }
+        });
+        edit_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(Currnet_Location.this, Edit_Profile.class);
+                startActivity(intent);
             }
         });
 

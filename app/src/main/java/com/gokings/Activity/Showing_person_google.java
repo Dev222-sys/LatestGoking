@@ -1,7 +1,9 @@
 package com.gokings.Activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -121,9 +123,9 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
 
 //                    Toast.makeText(Showing_person_google.this, response.body().toString() + "", Toast.LENGTH_SHORT).show();
                     try {
+                        AlertDialogBox();
 
                         s = response.body().string();
-
                         JSONObject jsonObject = new JSONObject(s);
                         JSONArray jsonArray = jsonObject.getJSONArray("records");
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -272,10 +274,39 @@ public class Showing_person_google extends FragmentActivity implements OnMapRead
     }
 
 
+    public void AlertDialogBox(){
 
+        //Logout
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Showing_person_google.this);
 
+        // set title
+        alertDialogBuilder.setTitle("");
 
+        // set dialog message
+        alertDialogBuilder.setIcon(R.mipmap.ic_launcher_round);
+        alertDialogBuilder
+                .setMessage("Please click on marker")
+                .setCancelable(false)
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
 
+                    }
+                });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent in=new Intent(Showing_person_google.this,Currnet_Location.class);
+        startActivity(in);
+
+    }
 }
 
 
